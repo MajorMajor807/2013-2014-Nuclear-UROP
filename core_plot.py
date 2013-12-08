@@ -33,7 +33,7 @@ class Core(object):
         xsize = 800/xmax
         ysize = 800/ymax
 
-        self.draw_core.rectangle([20,850,20+xsize,850 + ysize], (0,0,255))
+        self.draw_core.rectangle([20,850,20+xsize,850 + ysize], (255,255,255), outline = "black")
 
 
 
@@ -70,9 +70,10 @@ class Core(object):
 ##                        blue = 0.0
                     
                     # convert color to RGB triplet
-                        red = int(255*matrix[x][y])
-                        green = 0
+                        red = 0
+                        green = int(255*matrix[x][y])
                         blue = 0
+                    
                         
 
                         if matrix[x][y] != 0:
@@ -80,24 +81,23 @@ class Core(object):
                                 print "There's stuff that's being drawn"
                                 self.draw_core.rectangle([x*xsize,y*ysize,(x+1)*xsize,(y+1)*ysize], (red,green,blue), outline = "black")
 
-                            if len(self.matrices) == 1:
-                                print "Stuff works"
-                                self.draw_core.text([x*xsize + 3./8*xsize,y*ysize+3./8*ysize], str(matrix[x,y])[:5], (0,0,0), self.font)
-                            elif len(self.matrices) == 2:
-                                self.draw_core.text([x*xsize + 3./8*xsize,y*ysize+(2./8 + 3./8*m)*ysize], str(matrix[x,y])[:self.digits], (0,0,0), self.font)
-                            elif len(self.matrices) == 3:
-                                self.draw_core.text([x*xsize + 3./8*xsize,y*ysize+(1./8 + 2./8*m)*ysize], str(matrix[x,y])[:self.digits], (0,0,0), self.font)
-                            else:
-                                print "Herp derp"
-                        else:
-                            print "You done messed up!!!"
+                    if len(self.matrices) == 1:
+                        print "Stuff works"
+                        self.draw_core.text([x*xsize + 3./8*xsize,y*ysize+3./8*ysize], str(matrix[x,y])[:5], (0,0,0), self.font)
+                    elif len(self.matrices) == 2:
+                        self.draw_core.text([x*xsize + 3./8*xsize,y*ysize+(2./8 + 3./8*m)*ysize], str(matrix[x,y])[:digits], (0,0,0), self.font)
+                    elif len(self.matrices) == 3:
+                        self.draw_core.text([x*xsize + 3./8*xsize,y*ysize+(1./8 + 2./8*m)*ysize], str(matrix[x,y])[:digits], (0,0,0), self.font)
+                    else:
+                        print "Herp derp"
+                        
                        
             if len(self.matrices) == 1:
-                self.draw_core.text([20 + 3./8*xsize,850+3./8*ysize],name, (0,0,0), self.font)
+                self.draw_core.text([10 + 3./8*xsize,850+3./8*ysize],name, (0,0,0), self.font)
             elif len(self.matrices) == 2:
-                self.draw_core.text([20 + 3./8*xsize,880+(2./8 + 3./8*m)*ysize], name, (0,0,0), self.font)
+                self.draw_core.text([10 + 3./8*xsize,850+(2./8 + 3./8*m)*ysize], name, (0,0,0), self.font)
             elif len(self.matrices) == 3:
-                self.draw_core.text([20 + 3./8*xsize,880+(1./8 + 2./8*m)*ysize], name, (0,0,0), self.font)
+                self.draw_core.text([10 + 3./8*xsize,850+(1./8 + 2./8*m)*ysize], name, (0,0,0), self.font)
                        
 
                        
