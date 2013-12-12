@@ -26,7 +26,7 @@ class Core(object):
         
         print len(self.matrices)
 
-    def plot(self, matrix_number, digits):
+    def plot(self, matrix_number, digits, min_value):
         xmax = self.matrices[0].shape[0]
         ymax = self.matrices[0].shape[1]
 
@@ -46,7 +46,7 @@ class Core(object):
                 
             maxval = np.max(matrix)
                        
-            print "Length is", len(self.matrices)
+            
                        
             for y in range(ymax):
                 for x in range(xmax):
@@ -73,6 +73,12 @@ class Core(object):
                         red = 0
                         green = int(255*matrix[x][y])
                         blue = 0
+                        if matrix[x][y] == 1:
+                            green = 0
+                            red = 255
+                        if matrix[x][y] <= min_value:
+                            green = 0
+                            blue = int(255*matrix[x][y])+130
                     
                         
 
@@ -87,7 +93,7 @@ class Core(object):
                     elif len(self.matrices) == 2:
                         self.draw_core.text([x*xsize + 3./8*xsize,y*ysize+(2./8 + 3./8*m)*ysize], str(matrix[x,y])[:digits], (0,0,0), self.font)
                     elif len(self.matrices) == 3:
-                        self.draw_core.text([x*xsize + 3./8*xsize,y*ysize+(1./8 + 2./8*m)*ysize], str(matrix[x,y])[:digits], (0,0,0), self.font)
+                        self.draw_core.text([x*xsize + 3./8*xsize,y*ysize+(1./8 + 2./8*m)*ysize], str(matrix[x][y])[:digits], (0,0,0), self.font)
                     else:
                         print "Herp derp"
                         
